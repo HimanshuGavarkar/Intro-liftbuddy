@@ -8,93 +8,165 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root {
+    --text: #111827;
+    --muted: #6b7280;
+    --brand: #6a1b9a;
+    --brand-2: #22c55e;
+    --surface: rgba(255, 255, 255, 0.62);
+    --stroke: rgba(255, 255, 255, 0.45);
+    --shadow: 0 20px 45px rgba(17, 24, 39, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
+    min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(rgba(240,255,240,0.3), rgba(220,245,220,0.3)),
-                url('background.png');
-    background-size: cover;
-    background-position: center;
+    color: var(--text);
+    display: grid;
+    place-items: center;
     text-align: center;
-    color: #000;
+    padding: 28px 16px;
+    background:
+        radial-gradient(circle at 12% 15%, rgba(106, 27, 154, 0.09), transparent 33%),
+        radial-gradient(circle at 88% 85%, rgba(34, 197, 94, 0.08), transparent 38%),
+        linear-gradient(rgba(247, 252, 248, 0.28), rgba(238, 248, 242, 0.34)),
+        url('background.png') center / cover no-repeat;
 }
 
 .container {
-    max-width: 420px;
-    margin: auto;
-    padding: 30px 20px;
+    width: min(100%, 460px);
+    padding: 30px 22px 22px;
+    border-radius: 28px;
+    background: var(--surface);
+    border: 1px solid var(--stroke);
+    box-shadow: var(--shadow);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.75s ease-out both;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    inset: -130px auto auto -100px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(106, 27, 154, 0.16), transparent 65%);
+    pointer-events: none;
 }
 
 .logo-circle {
-    background: white;
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.95);
+    width: 112px;
+    height: 112px;
+    border-radius: 999px;
+    margin: 0 auto 18px;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 12px 28px rgba(17, 24, 39, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    position: relative;
+    z-index: 1;
+    animation: float 4s ease-in-out infinite;
 }
 
 .logo-circle img {
-    width: 90px;
+    width: 78px;
 }
 
 h1 {
-    font-size: 36px;
-    margin: 10px 0;
+    font-size: clamp(2rem, 6vw, 2.45rem);
+    margin: 6px 0 4px;
     font-weight: 700;
+    letter-spacing: -0.4px;
+    animation: fadeInUp 0.65s ease-out 0.1s both;
 }
 
 .subheading {
-    color: #6A1B9A;
-    font-size: 20px;
+    color: var(--brand);
+    font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
+    animation: fadeInUp 0.65s ease-out 0.2s both;
 }
 
 .explore {
-    font-style: italic;
-    margin: 20px 0;
+    color: var(--muted);
+    margin: 0 0 18px;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    animation: fadeInUp 0.65s ease-out 0.3s both;
+}
+
+.explore u {
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
 }
 
 .link-card {
-    background: white;
-    padding: 18px;
-    margin: 15px 0;
-    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    padding: 14px 16px;
+    margin: 10px 0;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    transition: 0.3s;
+    color: #1f2937;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(17, 24, 39, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    animation: fadeInUp 0.55s ease-out both;
+    position: relative;
+    z-index: 1;
 }
 
+.link-card:nth-of-type(1) { animation-delay: 0.38s; }
+.link-card:nth-of-type(2) { animation-delay: 0.46s; }
+.link-card:nth-of-type(3) { animation-delay: 0.54s; }
+.link-card:nth-of-type(4) { animation-delay: 0.62s; }
+.link-card:nth-of-type(5) { animation-delay: 0.7s; }
+.link-card:nth-of-type(6) { animation-delay: 0.78s; }
+
 .link-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 26px rgba(17, 24, 39, 0.14);
+    background: #fff;
 }
 
 .icon {
-    font-size: 20px;
+    font-size: 18px;
+}
+
+.icon-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: block;
 }
 
 footer {
-    margin-top: 30px;
+    margin-top: 18px;
     font-size: 12px;
-    color: #555;
+    color: var(--muted);
+    animation: fadeIn 0.9s ease-out 0.8s both;
 }
 
-/* Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(22px);
     }
     to {
         opacity: 1;
@@ -107,48 +179,20 @@ footer {
     to { opacity: 1; }
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
 @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
 }
 
-.logo-circle {
-    animation: float 3s ease-in-out infinite;
-}
+@media (max-width: 420px) {
+    .container {
+        padding: 24px 16px 18px;
+        border-radius: 22px;
+    }
 
-h1 {
-    animation: fadeInUp 0.8s ease-out;
-}
-
-.subheading {
-    animation: fadeInUp 0.8s ease-out 0.2s both;
-}
-
-.explore {
-    animation: fadeInUp 0.8s ease-out 0.4s both;
-}
-
-.link-card {
-    animation: fadeInUp 0.6s ease-out both;
-}
-
-.link-card:nth-child(1) { animation-delay: 0.5s; }
-.link-card:nth-child(2) { animation-delay: 0.6s; }
-.link-card:nth-child(3) { animation-delay: 0.7s; }
-.link-card:nth-child(4) { animation-delay: 0.8s; }
-
-.link-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-
-footer {
-    animation: fadeIn 1s ease-out 1s both;
+    .link-card {
+        font-size: 14px;
+    }
 }
 
 </style>
@@ -171,23 +215,33 @@ footer {
         <u>Explore the following links<br>to learn more:</u>
     </div>
 
-    <a class="link-card" href="https://instagram.com/liftbuddy.in" target="_blank">
-        <span class="icon">📸</span>
+    <a class="link-card" href="https://play.google.com/store/apps/details?id=com.liftbuddy.liftbuddyapp" target="_blank" rel="noopener">
+        <img src="playstore.png" alt="Play Store" class="icon-img">
+        LiftBuddy Launching soon on Play Store
+    </a>
+
+    <a class="link-card" href="https://apps.apple.com" target="_blank" rel="noopener">
+        <img src="appstore.png" alt="appstore" class="icon-img">
+        LiftBuddy Launching soon on App Store
+    </a>
+
+    <a class="link-card" href="https://instagram.com/liftbuddy.in" target="_blank" rel="noopener">
+        <img src="instagram.png" alt="Instagram" class="icon-img">
         @liftbuddy.in
     </a>
 
-    <a class="link-card" href="https://liftbuddy.in" target="_blank">
-        <span class="icon">🌐</span>
+    <a class="link-card" href="https://liftbuddy.in" target="_blank" rel="noopener">
+        <img src="www.png" alt="website" class="icon-img">
         https://liftbuddy.in
     </a>
 
     <a class="link-card" href="tel:+919752231105">
-        <span class="icon">📞</span>
+        <img src="phone.png" alt="phone call" class="icon-img">
         +91 9752231105
     </a>
 
     <a class="link-card" href="mailto:Gavarkarh@gmail.com">
-        <span class="icon">📧</span>
+        <img src="email.png" alt="email" class="icon-img">
         Gavarkarh@gmail.com
     </a>
 
